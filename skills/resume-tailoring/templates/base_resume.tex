@@ -1,0 +1,126 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{marvosym}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\RequirePackage{fontawesome}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins - match original PDF tight margins
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.4in}
+\addtolength{\topmargin}{-.65in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{rm}
+
+\setlist{rightmargin=0pt}
+
+\raggedbottom
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting - smaller font to save space
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\normalsize
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemWithoutTitle}[1]{
+  \item\small{
+    {\vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} $|$ \textit{#2} & \textit{#4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeEduHeading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-3pt}}
+
+% Light dot bullet for experience items
+\newcommand{\textbulletlight}{\raisebox{0.15ex}{\scalebox{0.6}{$\bullet$}}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt, label={}, itemsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-----------------------------
+%%%%%%  CV STARTS HERE  %%%%%%
+
+\begin{document}
+%----------HEADING-----------------
+\begin{center}
+  {\LARGE \textbf{Mani Sreekar Palakurthy}} \\[4pt]
+  {\small +1(480)-430-9378 \, $|$ \, \href{mailto:manisreekarusa@gmail.com}{manisreekarusa@gmail.com} \, $|$ \, \href{https://www.linkedin.com/in/mani-sreekar-p/}{linkedin.com/in/mani-sreekar-p} \, $|$ \, Dallas, TX}
+\end{center}
+
+\vspace{-4pt}
+
+%-----------CAREER SUMMARY-----------------
+%% <<CAREER_SUMMARY>>
+
+\vspace{3pt}
+%-----------TECHNICAL SKILLS-----------------
+%% <<TECHNICAL_SKILLS>>
+
+\vspace{3pt}
+%-----------EXPERIENCE-----------------
+%% <<WORK_EXPERIENCE>>
+
+\vspace{3pt}
+%-----------EDUCATION-----------------
+\section{Education}
+\resumeSubHeadingListStart
+    \resumeEduHeading
+      {Arizona State University}{Tempe, AZ, US}
+      {Master of Computer Science; CGPA: 4.00/4.00}{Aug 2022 -- May 2024}
+      \vspace{3pt}
+    \resumeEduHeading
+      {Jawaharlal Institute of Technology}{Hyderabad, TS, India}
+      {Bachelor of Computer Science and Engineering; CGPA: 9.55/10.00}{Aug 2017 -- Mar 2021}
+\resumeSubHeadingListEnd
+
+\vspace{3pt}
+%-----------PROJECTS-----------------
+%% <<PROJECTS>>
+
+\end{document}

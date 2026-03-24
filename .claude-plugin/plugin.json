@@ -1,8 +1,8 @@
 {
   "name": "resume-tailoring",
-  "description": "Tailored resumes with company research, branching experience discovery, and multi-format output",
-  "version": "1.0.0",
-  "author": { "name": "Varun R" },
-  "repository": "https://github.com/varunr89/resume-tailoring-skill",
+  "description": "JD-driven resume tailoring with tech-stack switching, skill injection, AI/LLM experience enhancement, multi-job batch processing, and LaTeX PDF generation",
+  "version": "2.0.0",
+  "author": { "name": "Mani Sreekar Palakurthy" },
+  "repository": "https://github.com/manisreekar/resume-tailoring-skill",
   "license": "MIT"
 }

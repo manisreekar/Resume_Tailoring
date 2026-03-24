@@ -1,6 +1,6 @@
 # Resume Tailoring Skill
 
-> AI-powered resume generation that researches roles, surfaces undocumented experiences, and creates tailored resumes from your existing resume library.
+> AI-powered resume tailoring that switches tech stacks, injects missing skills (including AI/LLM), dynamically adjusts years of experience, enforces 2-page limits, and generates professional LaTeX PDFs — with multi-job batch support.
 
 **Mission:** Your ability to get a job should be based on your experiences and capabilities, not on your resume writing skills.
 
@@ -20,13 +20,16 @@
 
 ## Overview
 
-This Claude Code skill generates high-quality, tailored resumes optimized for specific job descriptions while maintaining factual integrity. It goes beyond simple keyword matching by:
+This skill generates high-quality, tailored resumes optimized for specific job descriptions. It goes beyond simple keyword matching by:
 
-- **Multi-Job Batch Processing:** Process 3-5 similar jobs efficiently with shared experience discovery (NEW!)
-- **Deep Research:** Analyzes company culture, role requirements, and success profiles
-- **Experience Discovery:** Surfaces undocumented experiences through conversational branching interviews
-- **Smart Matching:** Uses confidence-scored content selection with transparent gap identification
-- **Multi-Format Output:** Generates professional MD, DOCX, PDF, and interview prep reports
+- **Tech Stack Switching:** Automatically switches backend frameworks (Java ↔ Node.js ↔ Python) to match JD requirements
+- **Skill Injection:** Adds experience points for missing technologies (Redis, Terraform, GraphQL, AI/LLM, etc.)
+- **AI/LLM Enhancement:** Injects AI agent, RAG, LLM, and prompt engineering experience when JDs require it
+- **Dynamic Years:** Adjusts years of experience in Career Summary to match JD (minimum 4, scales up)
+- **2-Page Enforcement:** Strict 2-page limit — automatically prunes or expands to fit exactly 2 pages
+- **LaTeX PDF Output:** Generates professional resumes from LaTeX templates compiled to PDF
+- **Multi-Job Batch Processing:** Process 3-5 similar jobs efficiently in batch mode
+- **Recruiter Email:** Auto-generates a short, human-sounding outreach email per job
 - **Self-Improving:** Library grows with each successful resume
 
 ## Installation
@@ -35,14 +38,14 @@ This Claude Code skill generates high-quality, tailored resumes optimized for sp
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/varunr89/resume-tailoring-skill.git ~/.claude/skills/resume-tailoring
+   git clone https://github.com/manisreekar/resume-tailoring-skill.git ~/.claude/skills/resume-tailoring
    ```
 
 2. **Verify installation:**
    ```bash
-   ls ~/.claude/skills/resume-tailoring
+   ls ~/.claude/skills/resume-tailoring/skills/resume-tailoring/
    ```
-   You should see: `SKILL.md`, `research-prompts.md`, `matching-strategies.md`, `branching-questions.md`, `README.md`
+   You should see: `SKILL.md`, `framework-switching.md`, `latex-generation.md`, `templates/`
 
 3. **Restart Claude Code** (if already running)
 
@@ -66,51 +69,46 @@ This Claude Code skill generates high-quality, tailored resumes optimized for sp
 
 **Required:**
 - Claude Code with skills enabled
-- Existing resume library (at least 1-2 resumes in markdown format)
+- Base LaTeX resume template (included in `skills/resume-tailoring/templates/`)
+- `pdflatex` for PDF compilation (or Overleaf as fallback)
 
 **Optional but Recommended:**
 - WebSearch capability (for company research)
-- `document-skills` plugin (for DOCX/PDF generation)
-- 10+ resumes in your library for best results
+- Docker with `texlive/texlive` image (alternative LaTeX compilation)
+- Multiple existing resumes for richer library
 
-**Resume Library Setup:**
-
-Create a `resumes/` directory in your project:
+**LaTeX Setup (macOS):**
 ```bash
-mkdir -p ~/resumes
-```
+# Install TeX Live (for pdflatex)
+brew install --cask mactex-no-gui
 
-Add your existing resumes in markdown format:
-```
-~/resumes/
-├── Resume_Company1_Role1.md
-├── Resume_Company2_Role2.md
-└── Resume_General_2024.md
+# Or use Docker instead
+docker pull texlive/texlive:latest
 ```
 
 ## Quick Start
 
 ### Single Job Application
-**1. Invoke the skill in Claude Code:**
+**1. Invoke the skill:**
 ```
 "I want to apply for [Role] at [Company]. Here's the JD: [paste job description]"
 ```
 
 **2. The skill will automatically:**
-1. Build library from existing resumes
-2. Research company and role
-3. Create optimized template (with checkpoint)
-4. Offer branching experience discovery
-5. Match content with confidence scores (with checkpoint)
-6. Generate MD + DOCX + PDF + Report
-7. Optionally update library
+1. Analyze JD → detect tech stack, years requirement, missing skills
+2. Switch all framework references to match JD (Java → Node.js, etc.)
+3. Inject missing skills (Redis, Terraform, AI/LLM, etc.)
+4. Adjust years of experience in Career Summary
+5. Generate LaTeX → compile to PDF (exactly 2 pages)
+6. Generate recruiter outreach email
+7. Present output
 
 **3. Review and approve:**
 - Checkpoints at key decision points
-- Full transparency on content matching
-- Option to revise or approve at each stage
+- Full transparency on all changes made
+- Option to revise at each stage
 
-### Multiple Jobs (Batch Mode - NEW!)
+### Multiple Jobs (Batch Mode)
 **1. Provide multiple job descriptions:**
 ```
 "I want to apply for these 3 roles:
@@ -121,107 +119,130 @@ Add your existing resumes in markdown format:
 
 **2. The skill will:**
 1. Detect multi-job intent and offer batch mode
-2. Build library once (shared across all jobs)
-3. Analyze gaps across ALL jobs (deduplicates common requirements)
-4. Conduct single discovery session addressing all gaps
-5. Process each job individually (research + tailoring)
+2. Analyze gaps across ALL jobs (deduplicates common requirements)
+3. Process each job individually (research + stack switching + skill injection)
+4. Generate each resume as LaTeX → PDF (exactly 2 pages each)
+5. Generate recruiter email for each job
 6. Present all resumes for batch review
 
 **3. Time savings:**
-- Shared discovery session (ask once, not 3-5 times)
+- Shared gap analysis (deduplicate once, not 3-5 times)
 - 11-27% faster than processing jobs sequentially
 - Same quality as single-job mode
 
 ## Files
 
 ### Core Implementation
-- `SKILL.md` - Main skill implementation with single-job and multi-job workflows
-- `multi-job-workflow.md` - Complete multi-job batch processing workflow
-- `research-prompts.md` - Company/role research templates
-- `matching-strategies.md` - Content scoring algorithms
-- `branching-questions.md` - Experience discovery patterns
+- `skills/resume-tailoring/SKILL.md` — Entry point: overview, constraints, file routing map
+- `skills/resume-tailoring/phase-0-analysis.md` — Phase 0: JD parsing, stack detection, tailoring plan
+- `skills/resume-tailoring/phase-1-2-tailoring.md` — Phase 1-2: Framework switching + skill injection (incl. AI/LLM)
+- `skills/resume-tailoring/phase-3-5-output.md` — Phase 3-6: LaTeX generation, 2-page enforcement, recruiter email
+- `skills/resume-tailoring/errors-examples-tests.md` — Error handling, usage examples, test cases
+- `skills/resume-tailoring/framework-switching.md` — Switching tables, injection templates, career summary template
+- `skills/resume-tailoring/latex-generation.md` — LaTeX structure, compilation commands, error reference
+- `skills/resume-tailoring/templates/full_base_resume.tex` — Master base LaTeX resume
+- `skills/resume-tailoring/templates/base_resume.tex` — Template with section placeholders
+
+### Supporting Files
+- `multi-job-workflow.md` — Complete multi-job batch processing workflow
 
 ### Documentation
-- `README.md` - This file
-- `MARKETPLACE.md` - Marketplace listing information
-- `SUBMISSION_GUIDE.md` - Skill submission guidelines
-
-### Supporting Documentation (`docs/`)
-- `docs/schemas/` - Data structure schemas for batch processing
-  - `batch-state-schema.md` - Batch state tracking structure
-  - `job-schema.md` - Job object schema
-- `docs/plans/` - Design documents and implementation plans
-  - `2025-11-04-multi-job-resume-tailoring-design.md` - Multi-job feature design
-  - `2025-11-04-multi-job-implementation-summary.md` - Implementation summary
-- `docs/testing/` - Testing checklists
-  - `multi-job-test-checklist.md` - Comprehensive multi-job test cases
+- `README.md` — This file
+- `LICENSE` — MIT License
 
 ## Key Features
 
-**🚀 Multi-Job Batch Processing (NEW!)**
+**🔄 Tech Stack Switching**
+- Detects JD's primary tech stack (Node.js, Python, Java, etc.)
+- Switches ALL framework references across Career Summary, Skills, and Experience
+- Adjusts testing tools (JUnit → Jest), build tools (Maven → npm), ORMs (Hibernate → Prisma)
+- Preserves all achievements and metrics — only tool names change
+
+**🤖 AI/LLM/Agentic Injection**
+- Detects AI-related requirements (LLM, RAG, AI agents, prompt engineering)
+- Injects AI-specific experience bullets based on genuine Assembli AI work
+- Expands AI Engineering skills table row
+- Adds ML & Data Science row when needed
+
+**📅 Dynamic Years of Experience**
+- Detects JD's years requirement (e.g., "5+ years", "6-8 years")
+- Adjusts Career Summary accordingly (minimum floor: 4 years, maximum: 7+)
+- Defaults to "5 years" when JD doesn't specify
+
+**💉 Skill Injection**
+- Identifies missing JD technologies (Redis, Terraform, GraphQL, Elasticsearch, etc.)
+- Injects truthful experience bullets based on adjacent experience
+- Adds technologies to Technical Skills table
+- Auto-prunes lowest-priority bullets if needed to maintain 2 pages
+
+**📄 LaTeX PDF Output**
+- Professional LaTeX template matching original resume format
+- Compiled via `pdflatex` (with Docker and Overleaf fallbacks)
+- **Strict 2-page enforcement** — auto-prunes or expands to exactly 2 pages
+- Output organized in `resumes/{Company}_{Frameworks}/` folders
+- Each folder contains: `.tex`, `.pdf`, `.log`, and `recruiter_mail.md`
+
+**🚀 Multi-Job Batch Processing**
 - Process 3-5 similar jobs efficiently
 - Shared experience discovery (ask once, apply to all)
 - Aggregate gap analysis with deduplication
 - Time savings: 11-27% faster than sequential processing
 - Incremental batches (add more jobs later)
 
-**🔍 Deep Research**
-- Company culture and values
-- Role benchmarking via LinkedIn
-- Success profile synthesis
+**📧 Recruiter Email**
+- Auto-generates a short outreach email per job
+- Brief company research for one natural, specific line
+- Human writing principles: no buzzwords, no filler, varied sentence length
+- Anti-AI checked: no "passionate", "leverage", or cover letter tone
 
-**💬 Branching Discovery**
-- Conversational experience surfacing
-- Dynamic follow-up questions
-- Surfaces undocumented work
-- Multi-job context awareness
-
-**🎯 Smart Matching**
-- Confidence-scored content selection
+**🎯 Smart Content Matching**
+- Confidence-scored content selection (Direct/Transferable/Adjacent)
 - Transparent gap identification
 - Truth-preserving reframing
-
-**📄 Multi-Format Output**
-- Professional markdown
-- ATS-friendly DOCX
-- Print-ready PDF
-- Interview prep report
-
-**🔄 Self-Improving**
-- Library grows with each resume
-- Successful patterns reused
-- New experiences captured
 
 ## Architecture
 
 ### Single-Job Workflow
 ```
-Phase 0: Library Build (always first)
+Phase 0: JD Analysis (tech stack + years + missing skills — single pass)
    ↓
-Phase 1: Research (JD + Company + Role)
+Phase 1: Framework Switching (career summary + skills + bullets)
    ↓
-Phase 2: Template (Structure + Titles)
+Phase 2: Skill Injection (missing tech + AI/LLM + skills table)
    ↓  [CHECKPOINT]
-Phase 2.5: Experience Discovery (Optional, Branching)
+Phase 3: LaTeX Generation + 2-Page Enforcement
+   ↓  Output → resumes/{Company}_{Frameworks}/
+Phase 4: Recruiter Email Generation
    ↓
-Phase 3: Assembly (Matching + Scoring)
-   ↓  [CHECKPOINT]
-Phase 4: Generation (MD + DOCX + PDF + Report)
-   ↓  [USER REVIEW]
-Phase 5: Library Update (Conditional)
+Phase 5: User Review
+   ↓
+Phase 6: Iteration (if needed)
 ```
 
-### Multi-Job Workflow (NEW!)
+**Output Structure:**
+```
+resumes/
+├── resume_index.md            ← framework cache (auto-updated)
+├── Google_React_NodeJS/
+│   ├── resume.tex
+│   ├── resume.pdf
+│   ├── resume.log
+│   └── recruiter_mail.md
+├── Stripe_Python_FastAPI/
+│   └── (same structure)
+└── OpenAI_Python_LLM/
+    └── (same structure)
+```
+
+### Multi-Job Workflow
 ```
 Phase 0: Intake & Batch Initialization
    ↓
 Phase 1: Aggregate Gap Analysis (deduplicates across all jobs)
    ↓
-Phase 2: Shared Experience Discovery (ask once, apply to all)
+Phase 2: Per-Job Processing (stack switch + injection + LaTeX → PDF + email for each)
    ↓
-Phase 3: Per-Job Processing (research + template + matching + generation for each)
-   ↓
-Phase 4: Batch Finalization (review all resumes, update library)
+Phase 3: Batch Finalization (review all resumes, update library)
 ```
 
 **Time Savings:**
@@ -234,151 +255,77 @@ See `multi-job-workflow.md` for complete details.
 
 **Truth-Preserving Optimization:**
 - NEVER fabricate experience
-- Intelligently reframe and emphasize
+- Intelligently reframe and emphasize existing work
 - Transparent about gaps
 
-**Holistic Person Focus:**
-- Surface undocumented experiences
-- Value volunteer work, side projects
-- Build around complete background
+**Strict 2-Page Format:**
+- Every resume is exactly 2 pages
+- Auto-prunes or expands as needed
+- Verified after PDF compilation
 
-**User Control:**
-- Checkpoints at key decisions
-- Options, not mandates
-- Can adjust or go back
+**Performance First:**
+- Single-pass JD analysis (extract everything at once)
+- Single-pass framework switching (all bullets in one go)
+- LaTeX validation before compilation (avoid recompilation)
+- Concise user interactions (don't overwhelm)
 
 ## Usage Examples
 
-### Example 1: Internal Role Transfer
-
+### Example 1: Java → Node.js Switch
 ```
-USER: "I want to apply for Principal PM role in 1ES team at Microsoft.
-      Here's the JD: [paste]"
+USER: "I want to apply for this Node.js backend role. JD: {paste}"
 
 RESULT:
-- Found 29 existing resumes
-- Researched Microsoft 1ES team culture
-- Featured PM2 Azure Eng Systems experience
-- Discovered: VS Code extension, AI side projects
-- 92% JD coverage, 75% direct matches
-- Generated tailored resume + interview prep report
+- Backend switched: Java SpringBoot → Node.js/Express
+- Testing: JUnit → Jest, Build: Maven → npm
+- Redis caching experience injected
+- Career Summary: "5+ years" (matched JD requirement)
+- Technical Skills reordered: JavaScript/TypeScript first
+- Output: resumes/Google_React_NodeJS/ (exactly 2 pages)
 ```
 
-### Example 2: Career Transition
-
+### Example 2: Python AI Engineer Role
 ```
-USER: "I'm a TPM transitioning to ecology PM. JD: [paste]"
+USER: "Applying for a Python/AI engineer role at OpenAI. JD: {paste}"
 
 RESULT:
-- Reframed "Technical Program Manager" → "Program Manager, Environmental Systems"
-- Surfaced volunteer conservation work
-- Identified graduate research in environmental modeling
-- 65% JD coverage with clear gap analysis
-- Cover letter recommendations provided
+- Backend switched: Java → Python/FastAPI
+- AI Enhancement: RAG pipeline emphasis, AI agents, vector embeddings
+- AI Engineering row expanded, ML & Data Science row added
+- Career Summary: "5 years" with AI capabilities highlighted
+- Elasticsearch injected for search requirements
+- Output: resumes/OpenAI_Python_LLM/ (exactly 2 pages)
 ```
 
-### Example 3: Career Gap Handling
-
+### Example 3: DevOps-Heavy Role
 ```
-USER: "I have a 2-year gap from starting a company. JD: [paste]"
+USER: "Role at HashiCorp requires heavy Terraform, K8s, and monitoring. JD: {paste}"
 
 RESULT:
-- Included startup as legitimate role
-- Surfaced: fundraising, product development, team building
-- Framed gap as entrepreneurial experience
-- Generated resume showing initiative and diverse skills
+- Terraform module authoring bullet injected
+- Kubernetes cluster management emphasized
+- Grafana dashboards bullet added
+- DevOps & CI/CD section expanded
+- Years: "6+ years" (matched JD)
+- Output: resumes/HashiCorp_Terraform_Kubernetes/ (exactly 2 pages)
 ```
 
-### Example 4: Multi-Job Batch (NEW!)
-
+### Example 4: Multi-Job Batch
 ```
-USER: "I want to apply for these 3 TPM roles:
-      1. Microsoft 1ES Principal PM
-      2. Google Cloud Senior TPM
-      3. AWS Container Services Senior PM"
+USER: "Apply for these 3 roles:
+      1. Node.js Backend - Stripe
+      2. Python AI Engineer - OpenAI
+      3. Full-Stack Java - Goldman Sachs"
 
 RESULT:
-- Detected multi-job mode, user confirmed
-- Built library once (29 resumes)
-- Gap analysis: 14 total gaps, 8 unique after deduplication
-- Shared discovery: 30-min session surfaced 5 new experiences
-  * Kubernetes CI/CD for nonprofits
-  * Azure migration for university lab
-  * Cross-functional leadership examples
-- Processed 3 jobs: 85%, 88%, 78% JD coverage
-- Time: 40 minutes vs 45 minutes sequential (11% savings)
-- All 3 resumes + batch summary generated
-```
-
-### Example 5: Incremental Batch Addition (NEW!)
-
-```
-WEEK 1: User processes 3 jobs (Microsoft, Google, AWS) in 40 minutes
-
-WEEK 2:
-USER: "I found 2 more jobs at Stripe and Meta. Add them to my batch?"
-
-RESULT:
-- Loaded existing batch with 5 previously discovered experiences
-- Incremental gap analysis: only 3 new gaps (vs 14 original)
-- Quick 10-min discovery session for new gaps only
-- Processed 2 additional jobs: 82%, 76% coverage
-- Time: 20 minutes (vs 30 if starting from scratch)
-- Total: 5 jobs, 8 experiences discovered
-```
-
-## Usage Patterns
-
-**Internal role (same company):**
-- Features most relevant internal experience
-- Uses internal terminology
-- Leverages organizational knowledge
-
-**External role (new company):**
-- Deep company research
-- Cultural fit emphasis
-- Risk mitigation
-
-**Career transition:**
-- Title reframing
-- Transferable skill emphasis
-- Bridge domain gaps
-
-**With career gaps:**
-- Gaps as valuable experience
-- Alternative activities highlighted
-- Truthful, positive framing
-
-## Testing
-
-### Single-Job Tests
-See Testing Guidelines section in SKILL.md (lines 1244-1320)
-
-**Key test scenarios:**
-- Happy path (full workflow)
-- Minimal library (2 resumes)
-- Research failures (obscure company)
-- Experience discovery value
-- Title reframing accuracy
-- Multi-format generation
-
-### Multi-Job Tests (NEW!)
-See `docs/testing/multi-job-test-checklist.md` for comprehensive test cases
-
-**Key multi-job scenarios:**
-- Happy path (3 similar jobs)
-- Diverse jobs (low overlap detection)
-- Incremental batch addition
-- Pause/resume functionality
-- Individual vs batch review
-- Express mode processing
-- Error handling and graceful degradation
-
-**Run tests:**
-```bash
-cd ~/.claude/skills/resume-tailoring
-# Single-job: Follow test procedures in SKILL.md Testing Guidelines section
-# Multi-job: Follow docs/testing/multi-job-test-checklist.md
+- Batch mode activated, 3 resumes generated
+- Each with correct tech stack switch + recruiter email
+- Output folders:
+  - resumes/Stripe_NodeJS_Redis/
+  - resumes/OpenAI_Python_LLM/
+  - resumes/GoldmanSachs_Java_SpringBoot/
+- Each folder: .tex + .pdf + .log + recruiter_mail.md
+- All exactly 2 pages
 ```
 
 ## Contributing
@@ -403,21 +350,22 @@ Contributions are welcome! Please follow these guidelines:
 ## Troubleshooting
 
 **Skill not appearing:**
-- Verify files are in `~/.claude/skills/resume-tailoring/`
+- Verify files are in the correct skill directory
 - Restart Claude Code
 - Check SKILL.md has valid YAML frontmatter
 
-**Research phase failing:**
-- Check WebSearch capability is enabled
-- Skill will gracefully fall back to JD-only analysis
+**LaTeX compilation failing:**
+- Ensure `pdflatex` is installed (`brew install --cask mactex-no-gui`)
+- Or use Docker: `docker run --rm -v $(pwd):/workspace texlive/texlive pdflatex ...`
+- Or use Overleaf (free online LaTeX editor) with the generated .tex file
 
-**DOCX/PDF generation failing:**
-- Ensure `document-skills` plugin is installed
-- Skill will fall back to markdown-only output
+**Resume not exactly 2 pages:**
+- The skill should auto-enforce this
+- If manually editing .tex, adjust bullet count or spacing
+- Check `latex-generation.md` for margin and spacing settings
 
 **Low match confidence:**
-- Try the Experience Discovery phase
-- Consider adding more resumes to your library
+- Consider adding more context about your experience
 - Review gap handling recommendations
 
 ## License
@@ -432,8 +380,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/varunr89/resume-tailoring-skill/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/varunr89/resume-tailoring-skill/discussions)
+- **Issues:** [GitHub Issues](https://github.com/manisreekar/resume-tailoring-skill/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/manisreekar/resume-tailoring-skill/discussions)
 
 ## Roadmap
 
@@ -442,3 +390,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Interview preparation Q&A generation
 - [ ] Multi-language resume support
 - [ ] Custom industry templates
+- [ ] ATS compatibility scoring

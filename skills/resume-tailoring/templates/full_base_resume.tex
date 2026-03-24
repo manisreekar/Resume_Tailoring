@@ -1,0 +1,243 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{marvosym}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\RequirePackage{fontawesome}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins - match original PDF tight margins
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.4in}
+\addtolength{\topmargin}{-.65in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{rm}
+
+\setlist{rightmargin=0pt}
+
+\raggedbottom
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting - smaller font to save space
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\normalsize
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemWithoutTitle}[1]{
+  \item\small{
+    {\vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} $|$ \textit{#2} & \textit{#4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeEduHeading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-3pt}}
+
+% Light dot bullet for experience items
+\newcommand{\textbulletlight}{\raisebox{0.15ex}{\scalebox{0.6}{$\bullet$}}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt, label={}, itemsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-----------------------------
+%%%%%%  CV STARTS HERE  %%%%%%
+
+\begin{document}
+%----------HEADING-----------------
+\begin{center}
+  {\LARGE \textbf{Mani Sreekar Palakurthy}} \\[4pt]
+  {\small +1(480)-430-9378 \, $|$ \, \href{mailto:manisreekarusa@gmail.com}{manisreekarusa@gmail.com} \, $|$ \, \href{https://www.linkedin.com/in/mani-sreekar-p/}{linkedin.com/in/mani-sreekar-p} \, $|$ \, Dallas, TX}
+\end{center}
+
+\vspace{-4pt}
+
+%-----------CAREER SUMMARY-----------------
+\section{Career Summary}
+\small{Full-Stack and AI Engineer with \textbf{5 years} of experience designing and optimizing \textbf{distributed, multi-tenant backend systems} using \textbf{Java and Python}. Skilled in developing \textbf{React} frontend, \textbf{REST APIs,} and \textbf{microservices} across \textbf{AWS and Azure}. Experienced in \textbf{containerized deployments (Docker, Kubernetes)}, \textbf{infrastructure as code (Terraform)}, and \textbf{CI/CD automation (GitHub Actions)}. Proficient in \textbf{observability and reliability engineering (CloudWatch, Prometheus, PostHog)}, \textbf{secure coding (OAuth2, JWT)}, and \textbf{performance tuning} for large-scale cloud environments. Proven track record of building production \textbf{RAG pipelines, AI agents, and automation}.}
+
+\vspace{3pt}
+%-----------TECHNICAL SKILLS-----------------
+\section{Technical Skills}
+\begin{tabular*}{\textwidth}{@{}p{0.27\textwidth}@{\hspace{1pt}}p{0.73\textwidth}@{}}
+\textbf{Languages and Core Skills} & Java, Python, C, SQL, HTML, CSS, JavaScript, TypeScript, JSON, XML/XSD, Agile Methodologies, Unix/Linux \\
+\textbf{Frameworks \& Libraries} & Flask, Django, Node.js, Express, Spring Boot, Hibernate, React, Next.js, Redux, Tailwind CSS \\
+\textbf{Cloud \& Infrastructure} & AWS (EC2, ECS, EKS, Lambda, RDS, S3, CloudFormation, Terraform, SES, CloudWatch), Azure \\
+\textbf{Distributed Architecture} & Microservices, RESTful API Design, Multiprocessing, Threading, Load Balancing, Fault Tolerance, High Availability, Event-Driven Architecture, Distributed Transactions, Message Queues (Kafka) \\
+\textbf{Databases} & PostgreSQL, MySQL, Oracle, MongoDB, DynamoDB \\[-1pt]
+\textbf{DevOps \& CI/CD} & Git, Maven, Jenkins, Docker, Terraform, CodePipeline, GitHub Actions, Continuous Integration \& Deployment \\
+\textbf{AI Engineering} & LLM Integration, AI Agents, Agentic Workflows, Retrieval-Augmented Generation (RAG), Prompt Engineering, Vector Embeddings, LLM API Integration (OpenAI, Claude, Bedrock)\\
+\textbf{AI Coding} & GitHub Copilot, Cursor, Claude Code, Codex, Antigravity \\
+\textbf{Monitoring \& Observability} & AWS CloudWatch, PostHog, Prometheus, Jaeger, Log Management (ELK Stack) \\
+\textbf{Security \& Compliance} & OAuth2, JWT, TLS/SSL, Keystore Management, Secure Coding, Policy-Based Access Control \\
+\textbf{Methodologies \& Tools} & Agile/Scrum, JIRA, Confluence, VS Code, Eclipse, IntelliJ, Linux/Unix Environment \\
+\end{tabular*}
+
+\vspace{3pt}
+%-----------EXPERIENCE-----------------
+\section{Work Experience}
+
+\begin{itemize}[leftmargin=0pt, rightmargin=0pt, label={}, itemsep=0pt]
+    \resumeSubheading{Senior Software Engineer, MicroGig}{Dallas, TX}
+    {}{Sep 2025 -- Present}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, rightmargin=0pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Contributed to the design and enhancement of \textbf{distributed backend systems} used for \textbf{credit risk evaluation and transaction processing}, ensuring scalability and reliability across microservices.
+        \item Developed and maintained \textbf{Java SpringBoot backend} and integrated with internal \textbf{credit and compliance platforms}, improving efficiency.
+        \item Collaborated with \textbf{infrastructure and SRE teams} to define observability KPIs and streamline \textbf{service monitoring, alerting, and post-incident root cause analysis}.
+        \item Participated in \textbf{code reviews, design discussions}, and knowledge-sharing sessions to promote engineering best practices.
+        \item Supported \textbf{compliance and audit initiatives} by improving exception handling and automated policy validation for service-level operations.
+\end{itemize}
+
+\vspace{-2pt}
+\begin{itemize}[leftmargin=0pt, rightmargin=0pt, label={}, itemsep=0pt]
+    \resumeSubheading{Founding Software Engineer, Assembli AI}{Remote}
+    {}{Nov 2024 -- May 2025}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, rightmargin=0pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Architected a \textbf{GenAI-enabled} Proposal Management System using \textbf{Java Springboot, Flask,} and \textbf{React}, deploying to \textbf{AWS (ECS/EKS)} with \textbf{Kubernetes} orchestration to automate complex document workflows.
+        \item Developed a \textbf{computer vision (CV) model} for \textbf{blueprint and document estimation}, automating the extraction of project metadata to accelerate proposal generation.
+        \item Designed a \textbf{Retrieval-Augmented Generation (RAG) pipeline} integrating \textbf{LangChain and AWS Bedrock} to enhance proposal drafting with AI-assisted content retrieval from project archives and document repositories.
+        \item Built and exposed \textbf{REST APIs and GraphQL APIs} using \textbf{Python} and \textbf{Flask}, leveraging \textbf{AWS Lambda} for asynchronous proposal-status processing to significantly reduce server load.
+        \item Developed a \textbf{Dynamic Template Builder} and integrated \textbf{PDF automation} with \textbf{AWS SES} email workflows, reducing manual proposal creation time by over 60\%.
+        \item Designed distributed, event-driven microservices using \textbf{Kafka} for inter-service communication, ensuring scalability, fault tolerance, and high throughput.
+        \item Implemented secure \textbf{e-signature workflows}, enabling clients to sign, approve, or decline proposals digitally; shortened approval turnaround time by 45\% while ensuring compliance with \textbf{security} and \textbf{privacy} requirements.
+        \item Designed and optimized services with \textbf{distributed system patterns}, implementing \textbf{thread-safe, multiprocessing, and load-balanced architectures} to achieve \textbf{high availability} and fault tolerance across deployments.
+        \item Implemented \textbf{CI/CD pipelines} with GitHub Actions, integrating coverage reports to maintain code quality; adopted \textbf{TDD} with \textbf{JUnit} and Pytest for reliable deployments.
+        \item Integrated \textbf{AWS CloudWatch} and \textbf{PostHog} to enable application \textbf{monitoring}, \textbf{troubleshooting}, and real-time telemetry, supporting proactive issue detection.
+        \item Participated in \textbf{Agile} development cycles, collaborated cross-functionally to align architecture with product strategy, and supported \textbf{business and technical presentations} to communicate platform capabilities to stakeholders.
+\end{itemize}
+
+\vspace{-2pt}
+\begin{itemize}[leftmargin=0pt, rightmargin=0pt, label={}, itemsep=0pt]
+    \resumeSubheading{Associate Developer, Inventech Solutions LLC}{McKinney, TX}
+    {}{Jun 2024 -- Nov 2024}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, rightmargin=0pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Contributed to the development of an \textbf{HR management dashboard} by building responsive UI components with \textbf{React} and backend services using \textbf{SpringBoot Java}.
+        \item Planned and implemented backend services supporting key HR functionalities such as \textbf{employee records management} and \textbf{payroll tracking}.
+        \item Implemented distributed microservice interactions using \textbf{RESTful endpoints} and \textbf{thread-safe service layers}, enabling concurrent data processing with consistent performance under load.
+        \item Collaborated with the team to design and refine database schemas in \textbf{PostgreSQL} and \textbf{MySQL}, ensuring scalable data models to meet evolving business needs.
+        \item Configured \textbf{CloudWatch} metrics and alerting for proactive monitoring, aligning service-level indicators with business KPIs.
+        \item Conducted \textbf{code reviews} and \textbf{unit testing}, improving defect detection rates by 28\% and ensuring best practices and version control workflows.
+\end{itemize}
+
+\vspace{-2pt}
+\begin{itemize}[leftmargin=0pt, rightmargin=0pt, label={}, itemsep=0pt]
+    \resumeSubheading{Technology Consultant, Arizona State University}{Tempe, AZ}
+    {}{Dec 2022 -- May 2024}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, rightmargin=0pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Spearheaded the end-to-end development of a \textbf{classroom asset management platform} by leveraging \textbf{Java SpringBoot REST APIs}, asynchronous data flows, and an API-driven UI architecture, enabling supervisors to efficiently manage and customize classroom details through a scalable and responsive system.
+        \item Developed and deployed an \textbf{automatic email notification system} with \textbf{AWS SES}, instantly alerting department heads of updates, ensuring real-time communication.
+        \item Transitioned backend systems from Excel-based storage to \textbf{PostgreSQL hosted on AWS RDS}, improving integrity and supporting complex queries.
+        \item Modernized legacy TypeScript applications by migrating them to \textbf{React}, resulting in a 30\% improvement in efficiency and scalability for end users.
+        \item Applied \textbf{monitoring and observability} principles using \textbf{CloudWatch} metrics and structured logging, enhancing root-cause visibility during production incidents.
+        \item Partnered with faculty and administrators to align product features with operational requirements and compliance standards.
+\end{itemize}
+
+\vspace{-2pt}
+\begin{itemize}[leftmargin=0pt, rightmargin=0pt, label={}, itemsep=0pt]
+    \resumeSubheading{Senior Analyst, Synchrony Financial}{Hyderabad, India}
+    {}{Jun 2021 -- May 2022}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, rightmargin=0pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Built \textbf{Java SpringBoot RESTful APIs} for vendor verification workflows, reducing credit card approval time by 30\% by automating key verification processes.
+        \item Designed scenario-based dashboards using \textbf{React} to streamline vendor interactions, decreasing errors and improving efficiency by 20\%.
+        \item Incorporated APIs with relational databases (\textbf{Oracle}) and NoSQL (\textbf{MongoDB}) to deliver hybrid storage solutions, improving retrieval and logging.
+        \item Executed robust \textbf{validation and error-handling mechanisms} in APIs to ensure high integrity and consistency across applications.
+        \item Strengthened security by managing certificate retrieval and updates with \textbf{Keytool} and \textbf{OpenSSL}, ensuring secure transmission across servers.
+        \item Contributed to post-deployment \textbf{performance tuning} and root-cause analysis, aligning improvements with credit-risk business metrics.
+        \item Collaborated in a \textbf{SaaS product} environment, focusing on continuous service delivery and customer satisfaction through automation.
+\end{itemize}
+
+\vspace{-2pt}
+\begin{itemize}[leftmargin=0pt, rightmargin=0pt, label={}, itemsep=0pt]
+    \resumeSubheading{Analyst Intern, Synchrony Financial}{Hyderabad, India}
+    {}{Mar 2020 -- May 2021}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, rightmargin=0pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Developed \textbf{ETL processes} in \textbf{SQL} and \textbf{Python} to extract, transform, and load from multiple sources into relational databases for analytics.
+        \item Enforced a process that signals \textbf{fraud detection} in real-time, successfully preventing over \$400K in fraudulent transactions.
+        \item Conducted ad hoc \textbf{data analysis} by making use of SQL queries, providing actionable insights that improved team efficiency by 10\%.
+        \item Designed \textbf{decision tree--based ML detection strategies}, reducing true name fraud incidents by 20\% across health and wellness clients.
+        \item Migrated portfolio monitoring systems from Excel to \textbf{Tableau hosted on AWS}, significantly accelerating reporting and decision-making.
+        \item Built and deployed \textbf{dashboards} integrated with \textbf{REST APIs}, allowing stakeholders to visualize trends and adapt strategies dynamically.
+        \item Participated in \textbf{incident response} and root-cause analysis, collaborating with risk and compliance teams to stabilize production pipelines under tight SLAs.
+\end{itemize}
+
+\vspace{3pt}
+%-----------EDUCATION-----------------
+\section{Education}
+\resumeSubHeadingListStart
+    \resumeEduHeading
+      {Arizona State University}{Tempe, AZ, US}
+      {Master of Computer Science; CGPA: 4.00/4.00}{Aug 2022 -- May 2024}
+      \vspace{3pt}
+    \resumeEduHeading
+      {Jawaharlal Institute of Technology}{Hyderabad, TS, India}
+      {Bachelor of Computer Science and Engineering; CGPA: 9.55/10.00}{Aug 2017 -- Mar 2021}
+\resumeSubHeadingListEnd
+
+\vspace{3pt}
+%-----------PROJECTS-----------------
+\section{Projects}
+
+\begin{itemize}[leftmargin=0pt, label={}, itemsep=0pt, parsep=0pt, font=\normalfont]
+\item {\small \textbf{Credit Card Fraud Detection: Python, Machine Learning}}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, labelsep=1pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Performed comprehensive Exploratory Data Analysis on Kaggle datasets and applied SMOTE resampling to address class imbalance; implemented and optimized Random Forest, Logistic Regression, and Decision Tree models, and employed an Ensemble Voting Classifier to achieve improved F1 scores.
+\end{itemize}
+
+\begin{itemize}[leftmargin=0pt, label={}, itemsep=0pt, parsep=0pt, font=\normalfont]
+\item {\small \textbf{I-Split - Web Application for Splitting Invoice: Flask, React}}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, labelsep=1pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Developed ``I-Split,'' a full-stack web application that simplifies splitting invoice items among group members by enabling intuitive item selection, automated share calculation, and efficient data management.
+\end{itemize}
+
+\end{document}
