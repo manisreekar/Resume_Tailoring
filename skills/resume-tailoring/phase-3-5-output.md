@@ -4,9 +4,27 @@
 
 **Goal:** Produce the final `resume.tex`, enforce 2-page limit, compile to PDF.
 
-**Inputs:** Completed resume content (Phase 1 + 2) + `latex-generation.md` for structure.
+**Inputs:** Completed resume content (Phase 1 + 2) + base LaTeX template.
 
-### 3.1 Assemble the LaTeX File
+### 3.1 LaTeX Custom Commands Reference
+
+**Resume Subheading (Work Experience):**
+```latex
+\resumeSubheading{Title, Company}{Location}{}{Dates}
+```
+Example: `\resumeSubheading{Senior Software Engineer, MicroGig}{Dallas, TX}{}{Sep 2025 -- Present}`
+
+**Education Heading:**
+```latex
+\resumeEduHeading{University}{Location}{Degree; GPA}{Dates}
+```
+
+**Bullet Points** — use `\textbulletlight` label with `\textbf{}` for emphasis:
+```latex
+\item \small Developed \textbf{Node.js/Express backend} and integrated with...
+```
+
+### 3.2 Section Assembly Patterns
 
 Start from `templates/full_base_resume.tex`. Assemble sections in order:
 1. **Heading** — unchanged (name, phone, email, LinkedIn, location)
@@ -16,7 +34,41 @@ Start from `templates/full_base_resume.tex`. Assemble sections in order:
 5. **Education** — unchanged
 6. **Projects** — adjust technology mentions if relevant
 
-### 3.2 Two-Page Enforcement (AUTO — do not ask user)
+**Career Summary pattern:**
+```latex
+\section{Career Summary}
+\small{Full-Stack and AI Engineer with \textbf{5 years}...}
+```
+
+**Technical Skills pattern:**
+```latex
+\section{Technical Skills}
+\begin{tabular*}{\textwidth}{@{}p{0.27\textwidth}@{\hspace{1pt}}p{0.73\textwidth}@{}}
+\textbf{Category Name} & Skill1, Skill2, Skill3 \\
+\end{tabular*}
+```
+
+**Work Experience pattern** (each role):
+```latex
+\begin{itemize}[leftmargin=0pt, rightmargin=0pt, label={}, itemsep=0pt]
+    \resumeSubheading{Title, Company}{Location}{}{Dates}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, rightmargin=0pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Bullet text with \textbf{bold keywords}...
+\end{itemize}
+```
+
+**Projects pattern:**
+```latex
+\begin{itemize}[leftmargin=0pt, label={}, itemsep=0pt, parsep=0pt, font=\normalfont]
+\item {\small \textbf{Project Title: Technologies}}
+\end{itemize}\vspace{-6pt}
+\begin{itemize}[leftmargin=12pt, labelsep=1pt, label={\textbulletlight}, itemsep=0pt, topsep=2pt]
+        \item \small Description...
+\end{itemize}
+```
+
+### 3.3 Two-Page Enforcement (AUTO — do not ask user)
 
 ```
 AFTER assembling the full .tex, CHECK page count:
@@ -37,19 +89,33 @@ ALWAYS verify final PDF is exactly 2 pages before presenting to user.
 NEVER produce a resume that is not exactly 2 pages.
 ```
 
-### 3.3 LaTeX Validation (before compiling)
+### 3.4 LaTeX Validation (before compiling)
 
 - All `\textbf{}` braces properly closed
 - All `\begin{itemize}` have matching `\end{itemize}`
 - All `\begin{tabular*}` have matching `\end{tabular*}`
-- No unescaped special characters (`&`, `%`, `$`, `#`, `_`)
+- No unescaped special characters — escape table:
+
+| Character | LaTeX Escape |
+|---|---|
+| `&` | `\&` |
+| `%` | `\%` |
+| `$` | `\$` |
+| `#` | `\#` |
+| `_` | `\_` |
+| `{` | `\{` |
+| `}` | `\}` |
+| `~` | `\textasciitilde` |
+| `^` | `\textasciicircum` |
+
+**Note:** The template uses `$` for math mode separators (`$|$`). Do not escape those.
+
 - `\href{}{}` links have proper URL encoding
 - Em-dashes use `--` (not unicode `—`)
 - Dollar amounts use `\$`
+- No orphaned `\\` at end of last table row (causes errors)
 
-See `latex-generation.md` for the full checklist and error reference.
-
-### 3.4 Output Folder Structure
+### 3.5 Output Folder Structure
 
 ```
 resumes/{Company}_{Framework1}_{Framework2}/
@@ -73,35 +139,34 @@ resumes/OpenAI_Python_LLM/
 resumes/GoldmanSachs_Java_SpringBoot/
 ```
 
-### 3.5 Compile to PDF
-
-The output PDF is always named `Mani_Resume.pdf`.
+### 3.6 Compile to PDF
 
 ```bash
+# Create output directory
 mkdir -p ./resumes/{Company}_{Tech1}_{Tech2}
 
-# Compile (run twice for cross-references)
-pdflatex -interaction=nonstopmode -jobname=Mani_Resume \
-  -output-directory=./resumes/{Company}_{Tech1}_{Tech2} \
-  ./resumes/{Company}_{Tech1}_{Tech2}/resume.tex
-
-pdflatex -interaction=nonstopmode -jobname=Mani_Resume \
-  -output-directory=./resumes/{Company}_{Tech1}_{Tech2} \
-  ./resumes/{Company}_{Tech1}_{Tech2}/resume.tex
-
-# Clean aux files (keep .tex, .pdf, .log)
-rm -f ./resumes/{Company}_{Tech1}_{Tech2}/Mani_Resume.aux \
-      ./resumes/{Company}_{Tech1}_{Tech2}/Mani_Resume.out
+# Compile (handles 2-pass, cleanup, and page count verification)
+python3 scripts/compile_resume.py ./resumes/{Company}_{Tech1}_{Tech2}/resume.tex
 ```
 
-**pdflatex is installed locally via BasicTeX (`brew install --cask basictex`).**
-Path: `/Library/TeX/texbin/pdflatex` — add to PATH if not found: `export PATH=$PATH:/Library/TeX/texbin`
+Output: `COMPILED|/path/to/Mani_Resume.pdf|2 pages` or `ERROR|{description}`
 
-**Fallback if pdflatex not available:**
-1. Provide `.tex` file for Overleaf (free online LaTeX editor)
-2. Reinstall: `brew install --cask basictex`
+**If the script fails:**
+- `ERROR|pdflatex not found` → tell user to install: `brew install --cask basictex` then `export PATH=$PATH:/Library/TeX/texbin`
+- `ERROR|Pass 1 failed: {LaTeX error}` → read the error, fix the .tex file (usually unclosed braces, unescaped `&`/`%`/`$`), and re-run the script
+- `WARNING|Resume is N pages` → adjust content in resume.tex and recompile
+- As last resort, provide the .tex file to user for Overleaf (free online LaTeX editor)
+- Manual fallback: `pdflatex -interaction=nonstopmode -jobname=Mani_Resume -output-directory=./resumes/{folder} ./resumes/{folder}/resume.tex`
 
-### 3.6 Update Resume Index
+### 3.7 Common LaTeX Errors
+
+1. **Missing `}` or `$`**: Check all braces/math delimiters are paired
+2. **Undefined control sequence**: Usually a typo in command name
+3. **Package conflict**: `hyperref` should be loaded last
+4. **Overfull hbox**: Content too wide — shorten text or adjust margins
+5. **Font not found**: Ensure `fontawesome5` package is installed
+
+### 3.8 Update Resume Index
 
 After every successful full generation, register the new resume in the cache:
 

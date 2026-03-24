@@ -45,7 +45,7 @@ This skill generates high-quality, tailored resumes optimized for specific job d
    ```bash
    ls ~/.claude/skills/resume-tailoring/skills/resume-tailoring/
    ```
-   You should see: `SKILL.md`, `framework-switching.md`, `latex-generation.md`, `templates/`
+   You should see: `SKILL.md`, `framework-switching.md`, `phase-3-5-output.md`, `templates/`
 
 3. **Restart Claude Code** (if already running)
 
@@ -139,9 +139,7 @@ docker pull texlive/texlive:latest
 - `skills/resume-tailoring/phase-3-5-output.md` — Phase 3-6: LaTeX generation, 2-page enforcement, recruiter email
 - `skills/resume-tailoring/errors-examples-tests.md` — Error handling, usage examples, test cases
 - `skills/resume-tailoring/framework-switching.md` — Switching tables, injection templates, career summary template
-- `skills/resume-tailoring/latex-generation.md` — LaTeX structure, compilation commands, error reference
 - `skills/resume-tailoring/templates/full_base_resume.tex` — Master base LaTeX resume
-- `skills/resume-tailoring/templates/base_resume.tex` — Template with section placeholders
 
 ### Supporting Files
 - `multi-job-workflow.md` — Complete multi-job batch processing workflow
@@ -362,7 +360,7 @@ Contributions are welcome! Please follow these guidelines:
 **Resume not exactly 2 pages:**
 - The skill should auto-enforce this
 - If manually editing .tex, adjust bullet count or spacing
-- Check `latex-generation.md` for margin and spacing settings
+- Check `phase-3-5-output.md` for LaTeX validation and spacing settings
 
 **Low match confidence:**
 - Consider adding more context about your experience

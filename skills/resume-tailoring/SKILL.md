@@ -43,11 +43,14 @@ The workflow is split across focused files. Read only what you need for the curr
 | `phase-0-analysis.md` | Start of every run | Cache check + JD parsing, stack detection, tailoring plan |
 | `phase-1-2-tailoring.md` | After Phase 0 approval | Framework switching + skill injection (incl. AI/LLM) |
 | `framework-switching.md` | During Phase 1-2 | Switching tables, injection templates, career summary template |
-| `phase-3-5-output.md` | After Phase 2 | LaTeX generation, 2-page enforcement, recruiter email |
-| `latex-generation.md` | During Phase 3 | LaTeX structure, compilation commands, error reference |
+| `phase-3-5-output.md` | After Phase 2 | LaTeX generation, structure, 2-page enforcement, recruiter email |
 | `errors-examples-tests.md` | On errors or edge cases | Error handling, usage examples, test cases |
-| `multi-job-workflow.md` | When batch mode detected | Multi-job batch processing (3-5 jobs) |
-| `scripts/cache_check.py` | Run via command line | Resume cache checker (never read — just execute) |
+| `multi-job-workflow.md` | When batch mode detected | Multi-job batch workflow (uses batch_manager.py) |
+| **Scripts — execute, never read:** | | |
+| `scripts/cache_check.py` | Phase 0 cache check | Resume cache checker |
+| `scripts/jd_analyzer.py` | Phase 0 JD analysis | Tech stack detection from JD text |
+| `scripts/compile_resume.py` | Phase 3 compilation | LaTeX → PDF + page count verification |
+| `scripts/batch_manager.py` | Multi-job batches | Batch state CRUD (init, add-job, status, complete) |
 
 ## Performance Optimization
 
@@ -68,7 +71,7 @@ The workflow is split across focused files. Read only what you need for the curr
    → If ≥90% framework match: skip to step 3 (reuse .tex, just compile + email)
 1. Read phase-0-analysis.md → full JD analysis, detect stack, present plan, get approval
 2. Read phase-1-2-tailoring.md + framework-switching.md → switch + inject
-3. Read phase-3-5-output.md + latex-generation.md → generate LaTeX, compile PDF, write email
+3. Read phase-3-5-output.md → generate LaTeX, compile PDF, write email
 4. Update resumes/resume_index.md → append new entry for future cache hits
 5. Present output to user
 ```

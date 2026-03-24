@@ -67,20 +67,20 @@ Extract ALL of the following in ONE pass:
 
 **Step 2: Detect Primary Tech Stack**
 
-Use the detection tables from `framework-switching.md`:
+Run automated detection first, then verify:
+```bash
+python3 scripts/jd_analyzer.py "paste JD text here"
 ```
-Backend:   Java | Node.js | Python | Go | .NET
-Frontend:  React | Angular | Vue
-Cloud:     AWS | GCP | Azure
-Database:  PostgreSQL | MySQL | MongoDB | Redis | DynamoDB
-Queue:     Kafka | RabbitMQ | SQS/SNS
-CI/CD:     GitHub Actions | Jenkins | GitLab CI | CircleCI
-Container: Docker + Kubernetes | Docker Swarm | ECS
-IaC:       Terraform | CloudFormation | Pulumi
-Auth:      OAuth2/JWT | SAML | Auth0/Okta
-Monitor:   CloudWatch | Datadog | Grafana | New Relic
-AI/LLM:    LLM Integration | AI Agents | RAG | Prompt Engineering | Vector DBs
-```
+
+The script outputs detected categories (BACKEND, FRONTEND, CLOUD, DATABASE, QUEUE, AI, YEARS, SWITCH).
+
+**Important — scripts are helpers, not final answers:**
+- If the script outputs `UNMATCHED|Rust,SvelteKit,Supabase|LLM should evaluate these manually`, YOU must decide how to handle those technologies (closest stack fallback, transferable skills, etc.)
+- If the script outputs `SWITCH|none`, read the JD yourself and determine the stack
+- The script only knows pre-defined patterns — new or unusual frameworks won't be detected
+- Always cross-check script output against the full JD context
+
+See `framework-switching.md` for what to do with each detected stack.
 
 **Step 3: Detect Years of Experience Requirement**
 

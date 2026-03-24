@@ -325,16 +325,7 @@ large-scale cloud environments. Proven track record of building production
 
 ### Years of Experience Rules:
 
-```
-YEARS_EXPERIENCE is determined by the JD:
-- JD says "5+ years" or "5 years"      → "5 years" or "5+ years"
-- JD says "6+ years" or "6-8 years"    → "6+ years"
-- JD says "7+ years"                   → "7+ years"
-- JD says "3+ years" or "3-5 years"    → "4+ years" (minimum floor)
-- JD says nothing about years          → "5 years" (default)
-- MINIMUM: always 4 years
-- MAXIMUM: 7+ years
-```
+See `phase-0-analysis.md` Step 3 for the full rules (min 4, max 7+, match JD).
 
 ### Variable Mapping by JD Stack:
 
@@ -377,7 +368,6 @@ Reorder items within each row to **front-load JD-relevant technologies:**
 2. **NEVER change company names, dates, or titles** — those are factual
 3. **NEVER inflate metrics** — all numbers must remain accurate
 4. **Only inject skills where adjacent experience exists** — the user has worked with distributed systems, caches, queues, AI/LLM, etc.
-5. **ALWAYS keep the resume to exactly 2 pages** — if adding bullets, remove less-relevant ones from oldest roles
+5. **2-page limit and years rules** — see SKILL.md Hard Constraints
 6. **Maintain LaTeX formatting** — all changes must preserve valid LaTeX syntax
-7. **Years of experience** — minimum 4, maximum 7+, match JD requirement
-8. **AI/LLM skills** — inject when JD requires, based on genuine Assembli AI experience
+7. **AI/LLM skills** — inject when JD requires, based on genuine Assembli AI experience

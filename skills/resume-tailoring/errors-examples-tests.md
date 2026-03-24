@@ -45,24 +45,13 @@ Inject top {N}? Or you choose?"
 ```
 
 **Edge Case 5: Resume Exceeds 2 Pages After Injections**
-```
-AUTO-ENFORCE — do NOT ask user, just fix:
-1. Remove lowest-relevance bullets from oldest roles
-2. Shorten verbose bullets (1.5-2 lines each)
-3. Consolidate similar bullets within same role
-4. Reduce Intern role to 4-5 bullets max
-5. Recompile and verify exactly 2 pages
 
-NEVER produce a resume that is not exactly 2 pages.
-```
+Auto-enforce — do NOT ask user. See `phase-3-5-output.md` §3.3 for the full enforcement rules.
+Key: shorten verbose bullets, consolidate near-duplicates, NEVER remove original bullets.
 
 **Edge Case 6: JD Asks for More Years Than Realistic**
-```
-- JD says 8+ years  → cap at "7+ years"
-- JD says 10+ years → use "7+ years" + add "...with strong depth across distributed systems and AI"
-- NEVER claim more than 7+ years
-- MINIMUM is always 4 years
-```
+
+See `phase-0-analysis.md` Step 3 for the full rules. Key: min 4, max 7+, never claim more.
 
 **Edge Case 7: JD is Heavily AI/LLM Focused**
 ```

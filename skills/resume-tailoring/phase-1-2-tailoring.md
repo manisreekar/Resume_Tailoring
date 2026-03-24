@@ -12,7 +12,7 @@ Apply the Career Summary template from `framework-switching.md`:
 
 ```
 Variables to set from Phase 0 detection:
-- YEARS_EXPERIENCE  → e.g., "5 years", "6+", minimum 4
+- YEARS_EXPERIENCE  → from Phase 0 Step 3 (min 4, max 7+, match JD)
 - PRIMARY_BACKEND   → e.g., "Node.js and Python"
 - PRIMARY_FRONTEND  → usually React (unchanged)
 - CONTAINER_TOOLS   → Docker, Kubernetes (usually unchanged)
@@ -21,12 +21,6 @@ Variables to set from Phase 0 detection:
 - MONITORING_TOOLS  → from JD (CloudWatch, Datadog, Grafana, etc.)
 - AUTH_TOOLS        → from JD (OAuth2, JWT, etc.)
 - AI_CAPABILITIES   → from JD if AI role (RAG, AI agents, LLM, etc.)
-
-YEARS EXAMPLES:
-  JD "5+ years" → \textbf{5+ years}
-  JD "6 years"  → \textbf{6 years}
-  JD nothing    → \textbf{5 years} (default)
-  JD "3 years"  → \textbf{4+ years} (minimum floor)
 ```
 
 ### 1.2 Technical Skills Reordering
