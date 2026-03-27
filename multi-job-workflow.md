@@ -94,7 +94,7 @@ For each pending job:
    - Update `resume_index.md` via cache_check.py
 
 3. Output to `resumes/{Company}_{Framework1}_{Framework2}/`:
-   - `resume.tex`, `Mani_Resume.pdf`, `Mani_Resume.log`, `recruiter_mail.md`, `run_log.md`
+   - `jd.md`, `resume.tex`, `Mani_Resume.pdf`, `Mani_Resume.log`, `recruiter_mail.md`, `run_log.md`
 
 4. Mark complete:
    ```bash
@@ -128,7 +128,7 @@ After all jobs complete:
    - Job 2: {Company} | Folder: resumes/{folder}/
    ...
 
-   Each folder contains: resume.tex, .pdf, .log, recruiter_mail.md
+   Each folder contains: jd.md, resume.tex, .pdf, .log, recruiter_mail.md
 
    REVIEW OPTIONS:
    1. APPROVE ALL

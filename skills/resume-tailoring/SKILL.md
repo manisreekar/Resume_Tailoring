@@ -86,6 +86,7 @@ The workflow is split across focused files. Read only what you need for the curr
 resumes/
 ├── resume_index.md   ← framework cache (lookup before every run)
 └── {Company}_{Framework1}_{Framework2}/
+    ├── jd.md             ← Original job description (saved verbatim)
     ├── resume.tex        ← LaTeX source
     ├── Mani_Resume.pdf   ← Compiled PDF (always this name, exactly 2 pages)
     ├── Mani_Resume.log   ← LaTeX compilation log

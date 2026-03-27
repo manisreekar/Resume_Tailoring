@@ -119,6 +119,7 @@ NEVER produce a resume that is not exactly 2 pages.
 
 ```
 resumes/{Company}_{Framework1}_{Framework2}/
+├── jd.md             → Original job description (saved verbatim)
 ├── resume.tex        → LaTeX source
 ├── resume.pdf        → Compiled PDF
 ├── resume.log        → LaTeX compilation log (keep for debugging)
@@ -138,6 +139,25 @@ resumes/Stripe_Python_FastAPI/
 resumes/OpenAI_Python_LLM/
 resumes/GoldmanSachs_Java_SpringBoot/
 ```
+
+### 3.5.1 Save Job Description
+
+Save the original JD text verbatim as `jd.md` in the output folder. This preserves the exact JD used for tailoring, useful for future reference and cache comparisons.
+
+```markdown
+# Job Description
+
+**Company:** {Company}
+**Role:** {Job Title}
+**Source:** {URL or "Pasted by user"}
+**Date Saved:** {YYYY-MM-DD}
+
+---
+
+{Original JD text, pasted verbatim — do not edit or summarize}
+```
+
+Save as `jd.md` in `resumes/{Company}_{Frameworks}/`.
 
 ### 3.6 Compile to PDF
 
@@ -198,6 +218,7 @@ Write `run_log.md` in the output folder AND present the same summary to the user
 
 ## Files Created
 
+- `jd.md` — Original job description (verbatim)
 - `resume.tex` — LaTeX source
 - `resume.pdf` — Compiled PDF (exactly 2 pages)
 - `resume.log` — LaTeX compilation log
